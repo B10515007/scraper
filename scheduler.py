@@ -49,9 +49,10 @@ def main():
                 discord_msg = bot.parse_rent591_message(data)
                 bot.push_message(discord_msg)
             else:
+                bot.push_message('沒找到新的')
                 print('沒找到新的')               
             
-            time.sleep(60)
+            time.sleep(10)
             
     except KeyboardInterrupt:
         print("程式正在關閉...")

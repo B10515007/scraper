@@ -102,7 +102,7 @@ class Scraper591(RentHouseScraper):
         params = [{
                     "region": 3,   # 1: 台北市
                     "section": "27",  # 10:內湖區 11: 南港區
-                    "layout": "4",
+                    "layout": "3",
                     "notice": "not_cover",
                     "price": "10000_20000"
                  }]

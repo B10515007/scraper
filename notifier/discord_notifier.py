@@ -2,20 +2,24 @@ import discord
 import asyncio
 import configparser
 import os
+from dotenv import load_dotenv
 
 from threading import Thread, Event
 from queue import Queue
 
 class DiscordBot:
     def __init__(self, aMessage_queue):
+        load_dotenv()
         config = configparser.ConfigParser()
         # 獲取當前 Python 檔案所在的資料夾
         script_dir = os.path.dirname(os.path.abspath(__file__))
         config.read(script_dir+'/config.ini')
 
         # print(config['Discord'].section())
-        self.mToken = config['Discord']['Toekn']
-        self.mChannelId = int(config['Discord']['Rent_House_Channel'])
+        self.mToken = os.getenv('DISCORD_TOKEN')
+        self.mChannelId = int(os.getenv('DISCORD_RENT_HOUSE_CHANNEL'))
+        # self.mToken = config['Discord']['Toekn']
+        # self.mChannelId = int(config['Discord']['Rent_House_Channel'])
         # 啟用 Bot
         intents = discord.Intents.default()
         self.mClient = discord.Client(intents=intents)
@@ -37,8 +41,11 @@ class DiscordBot:
             try:
                 if not self.mMessage_queue.empty():
                     message = self.mMessage_queue.get_nowait()
+                    print(message)
                     if self.mChannel:
                         await self.mChannel.send(message)
+                    else:
+                        print('mChannel not set')
                 await asyncio.sleep(1)
             except Exception as e:
                 print(f"Error in check_queue: {e}")

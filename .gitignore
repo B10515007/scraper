@@ -1,4 +1,5 @@
 rent_house/
-.txt
-.html
-.pyc
+*.txt
+*.html
+*.pyc
+*.env
