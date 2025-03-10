@@ -41,7 +41,6 @@ class DiscordBot:
             try:
                 if not self.mMessage_queue.empty():
                     message = self.mMessage_queue.get_nowait()
-                    print(message)
                     if self.mChannel:
                         await self.mChannel.send(message)
                     else:

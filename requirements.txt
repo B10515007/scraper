@@ -1,4 +1,5 @@
-asyncio
-beautifulsoup4
-discord.py
-requests
+asyncio==3.4.3
+beautifulsoup4==4.13.3
+discord.py==1.7.3
+requests==2.27.1
+schedule==1.2.2
